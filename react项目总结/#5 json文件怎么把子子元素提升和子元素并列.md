@@ -1,4 +1,4 @@
-#react项目总结
+## react项目总结
 - 问题描述：json文件怎么把子子元素提升和子元素并列
 ``` javascript
 {
