@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题文档</title>
+	<style>
+		#grade {
+			width: 250px;
+			height: 28px;
+			margin: 10px auto;
+		}
+
+		#grade li {
+			width: 27px;
+			height: 28px;
+			background: url(star.gif) no-repeat 0 0;
+			cursor: pointer;
+			list-style: none;
+			float: left;
+		}
+
+		#grade li.select {
+			background: url(star.gif) no-repeat 0 -29px;
+		}
+	</style>
+	<script src="jquery-1.10.1.min.js"></script>
+	<script>
+		$(function () {
+			$("#grade li").mouseover(function () {
+				$(this).addClass("select").prevAll().addClass("select");
+			});
+
+			$("#grade ul").mouseout(function () {
+				$(this).children().removeClass("select");
+				$("li.current").addClass("select").prevAll().addClass("select");
+			});
+
+			$("#grade li").click(function () {
+				$(this).addClass("current").siblings().removeClass("current").nextAll().removeClass("select");
+				$(this).prevAll().addClass("select");
+				$(this).addClass("select").next().removeClass("select");
+			})
+		});
+	</script>
+</head>
+
+<body>
+	<div id="grade">
+		<ul>
+			<li id="one"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+
+</html>

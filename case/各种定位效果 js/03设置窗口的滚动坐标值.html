@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+button{ position:fixed; right:100px; top:100px;}
+img{ width:100%;}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('button').click(function(e) {
+        //设置窗口的滚动坐标值 屏数
+		var num=$(document).height() - $(window).height()
+		$('html,body').animate({ scrollTop:num},500)
+    });
+})
+</script>
+</head>
+
+<body>
+<button>按钮</button>
+<img src="images/01.jpg" width="600" >
+<img src="images/02.jpg" width="300">
+<img src="images/03.jpg" width="300">
+<img src="images/04.jpg" width="300">
+</body>
+</html>

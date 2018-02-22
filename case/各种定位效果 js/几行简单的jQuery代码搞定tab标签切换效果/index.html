@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>几行简单的jQuery代码搞定tab标签切换效果</title>
+<style>
+    * { 
+    	margin:0; padding:0;list-style: none;}
+    body {font:12px/1.5 Tahoma;}
+    #outer {width:450px;margin:150px auto;}
+#tab {overflow:hidden;zoom:1;background:#000;border:1px solid #000;}
+#tab li {float:left;color:#fff;height:30px;	cursor:pointer;	line-height:30px;padding:0 20px;}
+#tab li.current {color:#000;background:#ccc;}
+#content {border:1px solid #000;border-top-width:0;}
+#content ul {line-height:25px;display:none;	margin:0 30px;padding:10px 0;}
+</style>
+</head>
+
+<body>
+<!-- html代码begin -->
+<div id="outer">
+    <ul id="tab">
+        <li class="current">tab标签</li>
+        <li>qq在线客服代码</li>
+        <li>css3</li>
+    </ul>
+    <div id="content">
+        <ul style="display:block;">
+           <a href="http://www.lanrenzhijia.com/tab">tab标签</a>
+        </ul>
+        <ul>
+            <a href="http://www.lanrenzhijia.com/service">qq在线客服代码</a>
+        </ul>
+        <ul>
+           <a href="http://www.lanrenzhijia.com/js/css3">css3</a>
+        </ul>
+    </div>
+</div>
+<!-- html代码end -->
+
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.min.js"></script>
+<script>
+	$(function(){
+		window.onload = function()
+		{
+			var $li = $('#tab li');
+			var $ul = $('#content ul');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass();
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+		}
+	});
+</script>
+
+</body>
+</html>

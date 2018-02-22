@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{ padding:0; margin:0; list-style:none;}
+ol{ width:100px; height:500px; border:1px solid #000; position:fixed; left:100px; top:0; overflow:hidden;}
+
+ol li{ width:100px; height:100px; background:#ccc; border-bottom:1px solid #000; line-height:100px; text-align:center; font-size:30px; font-weight:bold; cursor:pointer;}
+ol .current{ background:yellow;}
+html{ height:100%;}
+body{ height:100%;}
+ul{ height:100%;}
+ul li{ width:100%; height:100%; background:#ccc; font-weight:bold; font-size:30px;}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//加工函数染色模块；
+	var colors=['pink','green','purple','orange','blue']
+	
+	$('ul li').each(function(index, element) {
+        $(element).css('background',colors[index])
+    });
+	
+	//关于ol添加类和删除类
+	$('ol li').click(function(e) {
+        $(this).addClass('current').siblings().removeClass();//导航的任务完成
+		
+		//屏幕大色块对应的任务；
+		var index=$(this).index();
+		//设置屏幕的滚动坐标
+		$('html,body').animate({ scrollTop:index*$(window).height()},500)
+    });
+})
+</script>
+</head>
+
+<body>
+<ol>
+	<li class="current">首页</li>
+	<li>关注</li>
+	<li>动态</li>
+	<li>风格</li>
+	<li>作品</li>
+</ol>
+<ul>
+	<li>首页</li>
+	<li>关注</li>
+	<li>动态</li>
+	<li>风格</li>
+	<li>作品</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{ padding:0; margin:0; list-style:none; border:0;}
+.all{ width:400px; height:307px; border:5px solid #ccc; margin:100px auto; position:relative;}
+.all .show{ position:relative; overflow:hidden; width:400px; height:307px;}
+.all ul{ width:9999px; height:307px; position:absolute; left:0; top:0;}
+.all ul li{ float:left;}
+
+.all span{ width:52px; height:52px; background:url(images/niao/arr.png); position:absolute; top:50%; margin-top:-26px; left:-21px; cursor:pointer;}
+.all .right{ width:52px; height:52px; background:url(images/niao/arr.png) no-repeat right 0; position:absolute; top:50%; margin-top:-26px; right:-21px; left:auto;}
+
+.all ol{ position:absolute; bottom:-30px; left:30%; cursor:pointer;}
+.all ol li{ width:13px; height:13px; background:url(images/niao/00.png) no-repeat 0 0; float:left; margin-left:10px; font-size:0;}
+.all ol .current{ background-position:0 bottom;}
+.box li{ background:red; border:1px solid #000;}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var sx=0
+	var timer=null;
+	//var num=0;
+	
+	$('.all ol li').click(function(e) {
+        var index=$(this).index();
+		$(this).addClass('current').siblings().removeClass();;
+		
+		$('.all ul').stop().animate({left:index*-400},500)
+		sx=index
+    });
+	
+	
+	//箭头工作
+	$('.all .right').click(function(e) {
+        sx++;
+		if(sx>5){sx=0}
+		//都有谁需要跟着这个顺序走。
+		$('.all ol li').eq(sx).addClass('current').siblings().removeClass();
+		
+		$('.all ul').stop().animate({left:sx*-400},500)
+    });
+	
+	$('.all .left').click(function(e) {
+        sx--;
+		if(sx<0){sx=5}
+		//都有谁需要跟着这个顺序走。
+		$('.all ol li').eq(sx).addClass('current').siblings().removeClass();
+		
+		$('.all ul').stop().animate({left:sx*-400},500)
+    });
+	
+	//自动播放模块
+	//制作一个定时器去实现自动播放功能； 定时器模块
+	
+	timer=setInterval(autoplay,2000)
+	function autoplay(){
+		sx++
+		if(sx>5){sx=0}
+		$('.all ol li').eq(sx).addClass('current').siblings().removeClass();//表示的是角标
+		$('.all ul').stop().animate({left:sx*-400},500)
+	}
+	
+	//鼠标移上停止定时器模块
+	$('.all').hover(function(e) {
+        //停止自动播放，清除定时器；
+		clearInterval(timer)
+    },function(e){
+		clearInterval(timer)
+		timer=setInterval(autoplay,2000)
+    });
+	
+})
+</script>
+</head>
+
+<body>
+<div class="all">
+	<div class="show">
+        <ul>
+            <li><img src="images/niao/01.jpg" width="400" height="307"></li>
+            <li><img src="images/niao/02.jpg" width="400" height="307"></li>
+            <li><img src="images/niao/03.jpg" width="400" height="307"></li>
+            <li><img src="images/niao/04.jpg" width="400" height="307"></li>
+            <li><img src="images/niao/05.jpg" width="400" height="307"></li>
+            <li><img src="images/niao/06.jpg" width="400" height="307"></li>
+        </ul>
+    </div>
+	<span class="left"></span>
+	<span class="right"></span>
+    <ol>
+    	<li class="current"></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ol>
+</div>
+</body>
+</html>
