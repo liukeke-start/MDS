@@ -23,7 +23,7 @@
             var iframe = document.getElementById('iFrame1');
             var h = window.innerHeight || (document[document.compatMode == 'CSS1Compat' ? 'documentElement': 'body'].clientHeight);
             iframe.style.height = (h - 50) + 'px';
-            // iframe.style.height = '4345' + 'px';
+            // iframe.style.height = '4345' + 'px'; h在减去头部和尾部的告诉，头和尾固定的，尾部要定位的
         }
         render();
         var addEvent = function(element, type, handler) {
