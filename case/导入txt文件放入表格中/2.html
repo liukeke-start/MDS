@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script type="text/javascript" src="jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <div>
+            <input type="file" id="files" style="display:none" onchange="fileimport();" />
+            <input type="button" id="import" value="导入" />
+            <!-- <input type="button" id="export" value="导出" /> -->
+        </div>
+        <div id="tableTest"></div>
+    </body>
+
+</html>
+<script>
+    var txtdata;
+    function fileimport() {
+        var selectedFile = document.getElementById("files").files[0]; //获取读取的File对象
+        var name = selectedFile.name; //读取选中文件的文件名
+        var size = selectedFile.size; //读取选中文件的大小
+        console.log("文件名:" + name + "大小：" + size); //打印出文件信息
+
+        var reader = new FileReader(); //这里是核心！！！读取操作就是由它完成的。
+        reader.readAsText(selectedFile, 'UTF-8'); //读取文件的内容，注意编码方式
+        reader.onload = function() {
+            console.log(this.result); //当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
+            // $('<pre id="a">' + this.result + '</pre>').appendTo('body');
+
+            txtdata = this.result; // 把内容赋值给txtdata
+            var str = txtdata.split(",");// 把内容转化成逗号分隔的数组
+            
+            // new一个二维表格，并且把一维数组的值循环赋值给新建的二维数组
+            var at =  new Array(5);   //表格有5行  
+            for(var i = 0;i < at.length; i++){  
+               at[i] = new Array(5);    //每行有5列  
+               for(var j = 0; j < str.length / at.length; j++){
+                at[i][j] = str[i *  str.length / at.length +j];
+               }
+            } 
+            console.log(at);
+            // 动态建立表格
+            var arr = new Array();  
+            arr.push('<table border=1><tbody>');  
+            // i是行  j是列
+            for (var i = 0; i < 5; i++) {  
+                arr.push('<tr>');  
+                for (var j = 0; j < 5; j++) {  
+                    arr.push('<td>' + at[i][j] + '</td>');  
+                }  
+                arr.push('</tr>'); 
+            }  
+            arr.push('</tbody><table>');   
+            document.getElementById('tableTest').innerHTML = arr.join('');  
+        };
+    }
+
+    $(document).ready(function() {
+        $("#import").click(function() { //点击导入按钮，使files触发点击事件，然后完成读取文件的操作。
+            $("#files").click();
+        });
+
+        // $("#export").click(function() {
+        //     var content = "这是直接使用HTML5进行导出的:" + txtdata;
+        //     var blob = new Blob([content], {
+        //         type: "text/plain;charset=utf-8"
+        //     });
+        //     saveAs(blob, "file.txt"); //saveAs(blob,filename) //仅限于chorme的下载目录里
+        //     //alert("export OK")
+        // });
+    })
+</script>
