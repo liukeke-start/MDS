@@ -1,6 +1,6 @@
 #  Twig学习心得
-###Twig是一款灵活、快速、安全的PHP模板引擎。
-###模版导向语法
+### Twig是一款灵活、快速、安全的PHP模板引擎。
+### 模版导向语法
 遍历一个空数组时，会显示一个默认文本：
 ``` twig
 {% for user in users %}
@@ -9,7 +9,7 @@
     No users have been found.
 {% endfor %}
 ```
-###全功能
+### 全功能
 多重继承，块，自动化输出转义，以及其他许多特性
 ``` twig
 {% extends "layout.html" %}
@@ -18,7 +18,7 @@
     页面内容...
 {% endblock %}
 ```
-###安全
+### 安全
 说到安全，Twig拥有一些独特的特性：
 - 自动输出转义：为安全考虑，你可以全局启用自动输出转义，或者只对某个块启用：
 ``` twig
@@ -28,12 +28,12 @@
     {{ var|escape }}  {# var won't be doubled-escaped #}
 {% endautoescape %}
 ```
-### 沙盒
+###  沙盒
 Twig可以在沙盒环境下评估任意模版，用户只能访问一组有限的标签，过滤器，以及由开发者定义的对象方法。沙盒可以全局地或者单独对某些模版启用：
 ``` twig
 {{ include('page.html', sandboxed = true) }}
 ```
-###基础的API用法
+### 基础的API用法
 - Twig的PHP API
 ``` php
 require_once '/path/to/vendor/autoload.php';
@@ -63,7 +63,7 @@ echo $twig->render('index.html', array('name' => 'Fabien'));
 require_once '/path/to/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 ```
-###简单的模板
+### 简单的模板
 有两种形式的分隔符：{% ... %} 和 {{ ... }}。前者用于执行语句，例如for循环；后者将表达式的结果输出到模板中。
 ``` html
 <body>
@@ -76,7 +76,7 @@ Twig_Autoloader::register();
   {{ a_variable }}
 </body>
 ```
-###变量
+### 变量
 应用程序将变量传入模板中进行处理。变量可以包含你能访问的属性或元素。变量的可视化表现形式很大程度上取决于提供变量的应用程序。
 
 你可以使用.来访问变量的属性(方法或PHP对象的属性，或PHP数组单元）；也可以使用所谓的"subscript"语法[]:
@@ -99,7 +99,7 @@ Twig_Autoloader::register();
 - _self: 引用当前模板；
 - _context: 引用当前上下文；
 - _charset: 引用当前字符集；
-###设置变量
+### 设置变量
 可以通过过滤器filters来修改变量。过滤器中，用|分隔多个变量，还可以在括号中加入可选参数。可以链接多个过滤器。一个过滤器的输出结果将用于下一个过滤器中。
 
 下面的例子会删除所有带有name和title-cases的HTML标签:
@@ -117,7 +117,7 @@ Twig_Autoloader::register();
 {% endfilter %}
 ``` 
 访问filters页面，了解更多内置过滤器。
-###函数
+### 函数
 函数可被调用，用于生产内容。函数通过函数名被调用，其后紧跟圆括号(())，它还可以设置参数。
 
 举个例子，range返回一个包含整数等差数列的列表：
@@ -127,7 +127,7 @@ Twig_Autoloader::register();
 {% endfor %}
 ``` 
 访问functions页面，了解更多的内置函数。
-###具名实参
+### 具名实参
 Twig 1.12 新加入的具名实参支持。
 ``` twig
 {% for i in range(low=1, high=10, step=2) %}
@@ -155,7 +155,7 @@ Twig 1.12 新加入的具名实参支持。
 {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
 ``` 
 > **提示：**每个函数和过滤器的文档页面都有一节，列出支持的所有参数。
-###控制结构
+### 控制结构
 控制结构是指控制程序流程的所有东西——条件语句（例如 if/elseif/else），for循环，以及程序块等等。控制结构出现在 {% ... %}块中。
 
 例如，要显示一个被调用的user变量中提供的用户（users）列表，使用for标签：
@@ -178,7 +178,7 @@ if 标签可以用来测试表达式：
 {% endif %}
 ``` 
 前往tags页面，了解更多内置的标签。
-###注释
+### 注释
 要在模板中注释某一行，使用注释语法{# ...#}。这常用于调试或者为自己或其他模板设计师添加信息。
 ```twig
 {# note: disabled template because we no longer use this
@@ -187,7 +187,7 @@ if 标签可以用来测试表达式：
     {% endfor %}
 #}
 ``` 
-###其他操作符
+### 其他操作符
 在Twig 1.12.0版加入了对扩展的三元操作符的支持。
 - ?:: 三元操作符：
 
