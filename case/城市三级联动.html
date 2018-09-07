@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+    fieldset {
+      width: 500px;
+      padding: 20px;
+      margin: 30px;
+      border: 1px solid #ccc;
+    }
+
+    legend{
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #addr-show {
+      width: 200px;
+      height: 25px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      width: 80px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      outline: none;
+      background-color: #aaa;
+      margin: 0 20px;
+    }
+
+    .btn:disabled{
+      background-color:#ccc;
+    }
+
+    select {
+      width: 120px;
+      height: 30px;
+    }
+
+    select#city {
+      /*display: none;*/
+    }
+
+    select#country {
+      /*display: none;*/
+    }
+	</style>
+</head>
+<body>
+	<fieldset>
+    <legend>下拉选择框</legend>
+    <form action="#">
+      <label for="addr-show">您选择的是：
+        <input type="text" value="" id="addr-show">
+      </label>
+      <br>
+
+      <!-- 省份选择 -->
+      <select id="prov">
+        <option data-code="0">=请选择城市=</option>
+      </select>
+
+      <!--城市选择-->
+      <select id="city">
+        <option data-code="0">=请选择城市=</option>
+      </select>
+
+      <!--县区选择-->
+      <select id="country">
+        <option data-code="0">=请选择县区=</option>
+      </select>
+
+      <button type="button" class="btn met1">确定</button>
+    </form>
+  </fieldset>
+</body>
+</html>
+<!-- jq插件 -->
+<script src="../js/jquery-1.12.1.js"></script>
+<script type="text/javascript">
+// 城市的值json
+var provice = [
+  {
+    name: "北京市",
+    city: [
+      {
+        name: "北京市",
+        districtAndCounty: ["东城区", "西城区", "崇文区", "宣武区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云县", "延庆县", "延庆镇"]
+      }
+    ]
+  },
+  {
+    name: "天津市",
+    city: [
+      {
+        name: "天津市",
+        districtAndCounty: ["和平区", "河东区", "河西区", "南开区", "河北区", "红桥区", "塘沽区", "汉沽区", "大港区", "东丽区", "西青区", "津南区", "北辰区", "武清区", "宝坻区", "蓟县", "宁河县", "芦台镇", "静海县", "静海镇"]
+      }
+    ]
+  },
+  {
+    name: "上海市",
+    city: [
+      {
+        name: "上海市",
+        districtAndCounty: ["黄浦区", "卢湾区", "徐汇区", "长宁区", "静安区", "普陀区", "闸北区", "虹口区", "杨浦区", "闵行区", "宝山区", "嘉定区", "浦东新区", "金山区", "松江区", "青浦区", "南汇区", "奉贤区", "崇明县", "城桥镇"]
+      }
+    ]
+  },
+  {
+    name: "河北省",
+    city: [
+      {
+        name: "石家庄市",
+        districtAndCounty: ["长安区", "桥东区", "桥西区", "新华区", "裕华区", "井陉矿区", "辛集市", "藁城市", "晋州市", "新乐市", "鹿泉市", "井陉县", "微水镇", "正定县", "正定镇", "栾城县", "栾城镇", "行唐县", "龙州镇", "灵寿县", "灵寿镇", "高邑县", "高邑镇", "深泽县", "深泽镇", "赞皇县", "赞皇镇", "无极县", "无极镇", "平山县", "平山镇", "元氏县", "槐阳镇", "赵县", "赵州镇"]
+      },
+      {
+        name: "张家口市",
+        districtAndCounty: ["桥西区", "桥东区", "宣化区", "下花园区", "宣化县", "张家口市宣化区", "张北县", "张北镇", "康保县", "康保镇", "沽源县", "平定堡镇", "尚义县", "南壕堑镇", "蔚县", "蔚州镇", "阳原县", "西城镇", "怀安县", "柴沟堡镇", "万全县", "孔家庄镇", "怀来县", "沙城镇", "涿鹿县", "涿鹿镇", "赤城县", "赤城镇", "崇礼县", "西湾子镇"]
+      },
+      {
+        name: "承德市",
+        districtAndCounty: ["双桥区", "双滦区", "鹰手营子矿区", "承德县", "下板城镇", "兴隆县", "兴隆镇", "平泉县", "平泉镇", "滦平县", "滦平镇", "隆化县", "隆化镇", "丰宁满族自治县", "大阁镇", "宽城满族自治县", "宽城镇", "围场满族蒙古族自治县", "围场镇"]
+      },
+      {
+        name: "秦皇岛市",
+        districtAndCounty: ["海港区", "山海关区", "北戴河区", "昌黎县", "昌黎镇", "抚宁县", "抚宁镇", "卢龙县", "卢龙镇", "青龙满族自治县", "青龙镇"]
+      },
+      {
+        name: "唐山市",
+        districtAndCounty: ["路北区", "路南区", "古冶区", "开平区", "丰润区", "丰南区", "遵化市", "迁安市", "滦县", "滦州镇", "滦南县", "倴城镇", "乐亭县", "乐亭镇", "迁西县", "兴城镇", "玉田县", "玉田镇", "唐海县", "唐海镇"]
+      },
+      {
+        name: "廊坊市",
+        districtAndCounty: ["安次区", "广阳区", "霸州市", "三河市", "固安县", "固安镇", "永清县", "永清镇", "香河县", "淑阳镇", "大城县", "平舒镇", "文安县", "文安镇", "大厂回族自治县", "大厂镇"]
+      },
+      {
+        name: "保定市",
+        districtAndCounty: ["新市区", "北市区", "南市区", "定州市", "涿州市", "安国市", "高碑店市", "满城县", "满城镇", "清苑县", "清苑镇", "易县", "易州镇", "徐水县", "安肃镇", "涞源县", "涞源镇", "定兴县", "定兴镇", "顺平县", "蒲阳镇", "唐县", "仁厚镇", "望都县", "望都镇", "涞水县", "涞水镇", "高阳县", "高阳镇", "安新县", "安新镇", "雄县", "雄州镇", "容城县", "容城镇", "曲阳县", "恒州镇", "阜平县", "阜平镇", "博野县", "博陵镇", "蠡县", "蠡吾镇"]
+      },
+      {
+        name: "衡水市",
+        districtAndCounty: ["桃城区", "冀州市", "深州市", "枣强县", "枣强镇", "武邑县", "武邑镇", "武强县", "武强镇", "饶阳县", "饶阳镇", "安平县", "安平镇", "故城县", "郑口镇", "景县", "景州镇", "阜城县", "阜城镇"]
+      },
+      {
+        name: "沧州市",
+        districtAndCounty: ["运河区", "新华区", "泊头市", "任丘市", "黄骅市", "河间市", "沧县", "沧州市新华区", "青县", "清州镇", "东光县", "东光镇", "海兴县", "苏基镇", "盐山县", "盐山镇", "肃宁县", "肃宁镇", "南皮县", "南皮镇", "吴桥县", "桑园镇", "献县", "乐寿镇", "孟村回族自治县", "孟村镇"]
+      },
+      {
+        name: "邢台市",
+        districtAndCounty: ["桥东区", "桥西区", "南宫市", "沙河市", "邢台县", "邢台市桥东区", "临城县", "临城镇", "内丘县", "内丘镇", "柏乡县", "柏乡镇", "隆尧县", "隆尧镇", "任县", "任城镇", "南和县", "和阳镇", "宁晋县", "凤凰镇", "巨鹿县", "巨鹿镇", "新河县", "新河镇", "广宗县", "广宗镇", "平乡县", "丰州镇", "威县", "洺州镇", "清河县", "葛仙庄镇", "临西县", "临西镇"]
+      },
+      {
+        name: "邯郸市",
+        districtAndCounty: ["丛台区", "邯山区", "复兴区", "峰峰矿区", "武安市", "邯郸县", "南堡乡东小屯村", "临漳县", "临漳镇", "成安县", "成安镇", "大名县", "大名镇", "涉县", "涉城镇", "磁县", "磁州镇", "肥乡县", "肥乡镇", "永年县", "临洺关镇", "邱县", "新马头镇", "鸡泽县", "鸡泽镇", "广平县", "广平镇", "馆陶县", "馆陶镇", "魏县", "魏城镇", "曲周县", "曲周镇"]
+      }
+    ]
+  },
+  {
+    name: "山西省",
+    city: [
+      {
+        name: "太原市",
+        districtAndCounty: ["杏花岭区", "小店区", "迎泽区", "尖草坪区", "万柏林区", "晋源区", "古交市", "清徐县", "清源镇", "阳曲县", "黄寨镇", "娄烦县", "娄烦镇"]
+      },
+      {
+        name: "朔州市",
+        districtAndCounty: ["朔城区", "平鲁区", "山阴县", "岱岳乡", "应县", "金城镇", "右玉县", "新城镇", "怀仁县", "云中镇"]
+      },
+      {
+        name: "大同市",
+        districtAndCounty: ["城区", "矿区", "南郊区", "新荣区", "阳高县", "龙泉镇", "天镇县", "玉泉镇", "广灵县", "壶泉镇", "灵丘县", "武灵镇", "浑源县", "永安镇", "左云县", "云兴镇", "大同县", "西坪镇"]
+      },
+      {
+        name: "阳泉市",
+        districtAndCounty: ["城区", "矿区", "郊区", "平定县", "冠山镇", "盂县", "秀水镇"]
+      },
+      {
+        name: "长治市",
+        districtAndCounty: ["城区", "郊区", "潞城市", "长治县", "韩店镇", "襄垣县", "古韩镇", "屯留县", "麟绛镇", "平顺县", "青羊镇", "黎城县", "黎侯镇", "壶关县", "龙泉镇", "长子县", "丹朱镇", "武乡县", "丰州镇", "沁县", "定昌镇", "沁源县", "沁河镇"]
+      },
+      {
+        name: "晋城市",
+        districtAndCounty: ["城区", "高平市", "泽州县", "南村镇", "沁水县", "龙港镇", "阳城县", "凤城镇", "陵川县", "崇文镇"]
+      },
+      {
+        name: "忻州市",
+        districtAndCounty: ["忻府区", "原平市", "定襄县", "晋昌镇", "五台县", "台城镇", "代县", "上馆镇", "繁峙县", "繁城镇", "宁武县", "凤凰镇", "静乐县", "鹅城镇", "神池县", "龙泉镇", "五寨县", "砚城镇", "岢岚县", "岚漪镇", "河曲县", "文笔镇", "保德县", "东关镇", "偏关县", "新关镇"]
+      },
+      {
+        name: "晋中市",
+        districtAndCounty: ["榆次区", "介休市", "榆社县", "箕城镇", "左权县", "辽阳镇", "和顺县", "义兴镇", "昔阳县", "乐平镇", "寿阳县", "朝阳镇", "太谷县", "明星镇", "祁县", "昭余镇", "平遥县", "古陶镇", "灵石县", "翠峰镇"]
+      },
+      {
+        name: "临汾市",
+        districtAndCounty: ["尧都区", "侯马市", "霍州市", "曲沃县", "乐昌镇", "翼城县", "唐兴镇", "襄汾县", "新城镇", "洪洞县", "大槐树镇", "古县", "岳阳镇", "安泽县", "府城镇", "浮山县", "天坛镇", "吉县", "吉昌镇", "乡宁县", "昌宁镇", "蒲县", "蒲城镇", "大宁县", "昕水镇", "永和县", "芝河镇", "隰县", "龙泉镇", "汾西县", "永安镇"]
+      },
+      {
+        name: "吕梁市",
+        districtAndCounty: ["离石区", "孝义市", "汾阳市", "文水县", "凤城镇", "中阳县", "宁乡镇", "兴县", "蔚汾镇", "临县", "临泉镇", "方山县", "圪洞镇", "柳林县", "柳林镇", "岚县", "东村镇", "交口县", "水头镇", "交城县", "天宁镇", "石楼县", "灵泉镇"]
+      },
+      {
+        name: "运城市",
+        districtAndCounty: ["盐湖区", "永济市", "河津市", "芮城县", "古魏镇", "临猗县", "猗氏镇", "万荣县", "解店镇", "新绛县", "龙兴镇", "稷山县", "稷峰镇", "闻喜县", "桐城镇", "夏县", "瑶峰镇", "绛县", "古绛镇", "平陆县", "圣人涧镇", "垣曲县", "新城镇"]
+      }
+    ]
+  }
+];
+// 调取所有的省区
+showPro();
+$('#prov').on('change',function() {
+	showCity();
+	showCountry();
+});
+$('#city').on('change',function() {
+	showCountry();
+});
+// 显示哪个省区
+function showPro() {
+	var optiontit= '';
+    for(var i = 0; i < provice.length; i++) {
+      	optiontit += "<option data-code="+ (i+1) +">" + provice[i].name + "</option>"; 
+      	$(".selector").find("option[text="+provice[0].name+"]").attr("selected",true);
+    }
+    $("#prov").append(optiontit);
+}
+// 显示哪个城市
+function showCity(){
+	$("#city").empty();
+	var text = $("#prov option:selected");
+    var textcity = '<option data-code="0">=请选择城市=</option>';
+    // 判断城市的name和省区的name
+    for(var i = 0; i < provice.length; i++){
+    	for(var j = 0; j < provice[i].city.length; j++) {
+    		if(text.val() == provice[i].name) {
+    		    textcity += "<option data-code="+ (j+1)+">" + provice[i].city[j].name + "</option>"; 
+    	    }
+    	}
+    }
+    // 追加到dom中并且默认选中第一个
+    $('#city').append(textcity);
+    $('#city option').eq(1).attr("selected",true);
+}
+// 显示哪个镇
+function showCountry() {
+	$("#country").empty();
+	var text = $("#city option:selected");
+    var country = '<option data-code="0">=请选择县区=</option>';
+    for(var i = 0; i < provice.length; i++){
+        for(var j = 0; j< provice[i].city.length; j++){
+        	// 判断城市的name和县区的name
+        	if(text.val() == provice[i].city[j].name) {
+        		for(var z = 0; z < provice[i].city[j].districtAndCounty.length; z++){
+                    country += "<option data-code="+ (z+1)+">" + provice[i].city[j].districtAndCounty[z] + "</option>"; 
+                }
+        	}
+        }
+    }
+    $('#country').append(country);
+    $('#country option').eq(1).attr("selected",true);
+}
+// 确定按钮
+$('.btn').on('click', function(){
+    var addtext = $("#prov option:selected").val() + "-" + 
+                  $("#city option:selected").val() + "-" +  
+                  $("#country option:selected").val();
+    $("#addr-show").val(addtext);
+});
+</script>
