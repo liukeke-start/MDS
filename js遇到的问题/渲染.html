@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=0"
+    />
+    <title>渲染</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+    <div class="box2"></div>
+  </body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.12.1.js"></script>
+<script>
+  $(function() {
+    // 循环一层
+    let data = {
+      status: 0,
+      infos: [
+        {
+          adid: 0,
+          name: "小明"
+        },
+        {
+          adid: 1,
+          name: "小红"
+        },
+        {
+          adid: 2,
+          name: "小英"
+        }
+      ]
+    };
+    let conhtml = "<div>" + data.status + "</div>"; //之前的状态
+    if (data.infos.length !== 0) {
+      for (let i = 0; i < data.infos.length; i++) {
+        // for循环infos里面所有的值
+        conhtml +=
+          "<div>" +
+          data.infos[i].adid +
+          "</div>" +
+          "<div>" +
+          data.infos[i].name +
+          "</div>";
+      }
+      conhtml += "";
+      $(".box").html(conhtml);
+    } else {
+      console.log(0); //如果没有值的情况
+    }
+
+    // 循环2层
+    let data_t = {
+      type: "类型",
+      infos: [
+        {
+          adid: 0,
+          name: "小明",
+          cont: [
+            {
+              gid: "0",
+              title: "语文"
+            },
+            {
+              gid: "1",
+              title: "数学"
+            },
+            {
+              gid: "2",
+              title: "英语"
+            }
+          ]
+        },
+        {
+          adid: 0,
+          name: "小红",
+          cont: [
+            {
+              gid: "0",
+              title: "政治"
+            },
+            {
+              gid: "1",
+              title: "历史"
+            },
+            {
+              gid: "2",
+              title: "地理"
+            }
+          ]
+        },
+        {
+          adid: 0,
+          name: "小英",
+          cont: [
+            {
+              gid: "0",
+              title: "高数"
+            },
+            {
+              gid: "1",
+              title: "代数"
+            },
+            {
+              gid: "2",
+              title: "跳舞"
+            }
+          ]
+        }
+      ]
+    };
+    let twohtml = "<div>" + data_t.type + "</div>"; //之前的状态
+    let cont = "";
+    for (let i = 0; i < data_t.infos.length; i++) {
+      twohtml +=
+        "<div>" +
+        data_t.infos[i].adid +
+        "</div>" +
+        "<div>" +
+        data_t.infos[i].name +
+        "</div>";
+      for (let j = 0; j < data_t.infos[i].cont.length; j++) {
+        cont +=
+          "<div>" +
+                data_t.infos[i].cont[j].gid +
+          "</div>" +
+          "<div>" +
+                data_t.infos[i].cont[j].title +
+          "</div>";
+      }
+    }
+    twohtml += "";
+    cont += "";
+    $(".box2").html(twohtml);
+    $(".box2").after(cont);
+
+    // 都是对象的时候可以用for in 如果不都是对象这时候text.name会有2个undefined因为有个type类型
+    // for(i in data_t) {
+    //     console.log(i);
+    //     console.log(data_t[i]);
+    //     for(j in data_t[i]){
+    //         console.log(j);
+    //         console.log(data_t[i][j]);
+    //         let text = data_t[i][j];
+    //         console.log(text); 
+    //         console.log(text.name);
+    //     }
+    // }
+  });
+</script>
