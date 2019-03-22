@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>s搜索框</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .search,
+      .content {
+        margin: 100px auto;
+        width: 600px;
+      }
+      .input,
+      .ser-btn {
+        float: left;
+      }
+      .ser-btn {
+        color: #000;
+        font-size: 16px;
+        text-decoration: none;
+        margin-left: 8px;
+      }
+      .cf:before,
+      .cf:after {
+        content: ".";
+        display: block;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .cf:after {
+        clear: both;
+      }
+
+      .cf {
+        zoom: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search">
+      <form class="searchbox cf js-form">
+        <div class="input">
+          <input class="js-formtxt" value="" placeholder="请输入..." />
+        </div>
+        <div>
+          <a class="ser-btn js-formbtn" href="javascript:void(0);">搜索</a>
+        </div>
+      </form>
+    </div>
+    <div class="content">我是默认的内容</div>
+  </body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.12.1.js"></script>
+<script>
+  $(function() {
+    let data = ["a", "b", "c"];
+    $(".js-formbtn").click(function() {
+      let $txt = $(".js-formtxt").val();
+      //   let $url = decodeURIComponent(window.location.href) + "?id=" + $txt;
+      //   console.log($url);
+      //   $(this).attr("href", $url);
+      for (let i = 0; i < data.length; i++) {
+        let $con = data[i];
+        if ($txt == $con) {
+          $(".content").html($con);
+          return; //找到相同的值就return出去，不然还会一直对比，然后按照循环最后一个值渲染
+        } else {
+          $(".content").html("哎呀！出错啦"); //不用return这样找不到还能一直对比
+        }
+      }
+    });
+  });
+</script>
