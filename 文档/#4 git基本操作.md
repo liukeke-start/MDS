@@ -21,3 +21,5 @@
 - git push -u origin master
 * 查看本地代码是否更改
 - git status
+
+#### 二  推本地代码的时候怎么免密码
