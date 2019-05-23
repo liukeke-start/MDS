@@ -85,4 +85,18 @@ $("ul").on("click","li", function() {
 		$("ul li").eq(4).after(a);
 		console.log(123);
 });
+
+// 注意：如果html是动态渲染上去的，就需要用父元素委托绑定 建议使用 on
+// 例如ul中的li是通过动态渲染上去的，
+var html = '';
+html = '<li></li>';
+$('ul').html(html);
+// 如果想要给li绑定事件，并且点击li的时候触发本身的事件，就需要这样写
+$('ul li').each(function() {
+      var _this = $(this); //把this指向储存，然后在绑定事件
+      _this.on('click',function() {
+          $(this).next().show();               
+      });
+});
+
 ```
