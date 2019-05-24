@@ -40,6 +40,8 @@ git push -u origin master
 cd ~/.ssh
 ls
 ```
+- 这说明已经有ssh了否则就没有
+![enter image description here](https://i.loli.net/2019/05/24/5ce7d984e395487128.jpg)
 - 这两个命令就是检查是否已经存在 id_rsa.pub 或 id_dsa.pub 文件，如果文件已经存在，那么你可以跳过步骤2，直接进入步骤3。
 
 #### 2：创建一个 SSH key 
