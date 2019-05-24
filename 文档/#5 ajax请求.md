@@ -17,10 +17,13 @@
 
 - 注意：尽量避免使用Get方式提交表单，因为有可能会导致安全问题 
 
+##### 重点：POST在data里面传参，GET在url上传参。
+
 - 具体代码如下：
 ``` javascript
 function getFun(){
     // 截取当前url的值，赋给 man 根据不同的 后台不同的参数man  显示不同的
+    // 这里的man就是模拟截取的url的参数index.html?iv=76&man=xiaomi
     let searchArr = window.location.search.substr(1).split('&'),
         len = searchArr.length,man,strArr;
     for(let i = 0;i < len; i ++){
