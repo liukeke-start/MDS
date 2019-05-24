@@ -23,4 +23,48 @@
 - git status
 
 #### 二  推本地代码的时候怎么免密码
-###### 首先
+
+###### 1：首先需要检查你电脑是否已经有 SSH key 
+- 运行 git Bash 客户端，输入如下代码：
+- $ cd ~/.ssh
+- $ ls
+- 这两个命令就是检查是否已经存在 id_rsa.pub 或 id_dsa.pub 文件，如果文件已经存在，那么你可以跳过步骤2，直接进入步骤3。
+##### 2：创建一个 SSH key 
+- $ ssh-keygen -t rsa -C "your_email@example.com"
+- 代码参数含义：
+-t 指定密钥类型，默认是 rsa ，可以省略。
+-C 设置注释文字，比如邮箱。
+-f 指定密钥文件存储文件名。
+- 以上代码省略了 -f 参数，因此，运行上面那条命令后会让你输入一个文件名，用于保存刚才生成的 SSH key 代码
+- 接着又会提示你输入两次密码（该密码是你push文件的时候要输入的密码，而不是github管理者的密码），
+当然，你也可以不输入密码，直接按回车。那么push的时候就不需要输入密码，直接提交到github上了
+- 以下是本人的操作过程：
+
+![enter image description here](https://i.loli.net/2019/05/24/5ce766e016a7483298.jpg)
+
+##### 3：添加你的 SSH key 到 github上面去
+- 首先你需要拷贝 id_rsa.pub 文件的内容，你可以用编辑器打开文件复制，也可以用git命令复制该文件的内容，如：
+- $ clip < ~/.ssh/id_rsa.pub
+
+![enter image description here](https://i.loli.net/2019/05/24/5ce76762b1a9470612.jpg)
+
+ - 登录你的github账号，从又上角的设置（ Account Settings ）进入，然后点击菜单栏的 SSH key 进入页面添加 SSH key。
+ - 点击 Add SSH key 按钮添加一个 SSH key 。把你复制的 SSH key 代码粘贴到 key 所对应的输入框中，记得 SSH key 代码的前后不要留有空格或者回车。当然，上面的 Title 所对应的输入框你也可以输入一个该 SSH key 显示在 github 上的一个别名。默认的会使用你的邮件名称。
+ 
+ ![enter image description here](https://i.loli.net/2019/05/24/5ce76865dc23522328.jpg)
+ 
+##### 4：测试一下该SSH key
+- $ ssh -T git@github.com
+- 或者提交一次试试
+##### 5：由于输入密码的解决办法
+- 由于我在步骤2的时候添加了密码，所以每次push的时候还需要密码，例如：
+
+![enter image description here](https://i.loli.net/2019/05/24/5ce767a79383267136.jpg)
+ 
+- 这个地方需要输入创建ssh时候的密码，解决办法如下：
+- eval `ssh-agent -s`
+- ssh-add
+
+![enter image description here](https://i.loli.net/2019/05/24/5ce767f1be1e916009.jpg)
+
+- 这样就可以push的时候不需要密码了
