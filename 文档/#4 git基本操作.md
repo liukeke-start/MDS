@@ -1,35 +1,33 @@
-### git的基本操作
+## git的基本操作
 
-#### 一   怎么把本地代码推到git上面
+###  一   怎么把本地代码推到git上面
 
-##### 1：（先进入项目文件夹）通过命令 git init 把这个目录变成git可以管理的仓库
+#### 1：（先进入项目文件夹）通过命令 git init 把这个目录变成git可以管理的仓库
 - git init
    
-##### 2：把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，不要忘记后面的小数点“.”，意为添加文件夹下的所有文件
+#### 2：把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，不要忘记后面的小数点“.”，意为添加文件夹下的所有文件
 - git add .
   
-##### 3：用命令 git commit告诉Git，把文件提交到仓库。
+#### 3：用命令 git commit告诉Git，把文件提交到仓库。
 - git commit -m ' 提交的内容简介'
  
-##### 4：关联到远程库
+#### 4：关联到远程库
 - git remote add origin 你的远程库地址
 
-##### 5：获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）
+#### 5：获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）
 - git pull --rebase origin master
 
-##### 6：推代码，此过程会让输入git用户名以及密码
+#### 6：推代码，此过程会让输入git用户名以及密码
 - git push -u origin master
-* 查看本地代码是否更改
-- git status
 
-#### 二  推本地代码的时候怎么免密码
+### 二  推本地代码的时候怎么免密码
 
-###### 1：首先需要检查你电脑是否已经有 SSH key 
+#### 1：首先需要检查你电脑是否已经有 SSH key 
 - 运行 git Bash 客户端，输入如下代码：
 - $ cd ~/.ssh
 - $ ls
 - 这两个命令就是检查是否已经存在 id_rsa.pub 或 id_dsa.pub 文件，如果文件已经存在，那么你可以跳过步骤2，直接进入步骤3。
-##### 2：创建一个 SSH key 
+#### 2：创建一个 SSH key 
 - $ ssh-keygen -t rsa -C "your_email@example.com"
 - 代码参数含义：
 -t 指定密钥类型，默认是 rsa ，可以省略。
@@ -42,7 +40,7 @@
 
 ![enter image description here](https://i.loli.net/2019/05/24/5ce766e016a7483298.jpg)
 
-##### 3：添加你的 SSH key 到 github上面去
+#### 3：添加你的 SSH key 到 github上面去
 - 首先你需要拷贝 id_rsa.pub 文件的内容，你可以用编辑器打开文件复制，也可以用git命令复制该文件的内容，如：
 - $ clip < ~/.ssh/id_rsa.pub
 
@@ -53,10 +51,10 @@
  
  ![enter image description here](https://i.loli.net/2019/05/24/5ce76865dc23522328.jpg)
  
-##### 4：测试一下该SSH key
+#### 4：测试一下该SSH key
 - $ ssh -T git@github.com
 - 或者提交一次试试
-##### 5：由于输入密码的解决办法
+#### 5：由于输入密码的解决办法
 - 由于我在步骤2的时候添加了密码，所以每次push的时候还需要密码，例如：
 
 ![enter image description here](https://i.loli.net/2019/05/24/5ce767a79383267136.jpg)
@@ -68,3 +66,49 @@
 ![enter image description here](https://i.loli.net/2019/05/24/5ce767f1be1e916009.jpg)
 
 - 这样就可以push的时候不需要密码了
+
+
+### 三 git的基本操作
+- 查看git地址
+``` javascript
+git remote -v
+```
+- 查看远程分支
+``` javascript
+git branch -a  
+```
+- 提交之前查看本次提交修改了那些文件
+``` javascript
+git status
+```
+- 新建一个dev分支并且切换到dev分支
+``` javascript
+git checkout -b dev
+// git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+// git branch dev
+// git checkout dev
+```
+- 查看当前分支
+``` javascript
+git branch 
+```
+- 切换到主分支上
+``` javascript
+git checkout master
+```
+- 把dev分支的工作成果合并到master分支上：
+``` javascript
+git merge dev
+```
+- 删除新建的dev分支
+``` javascript
+git branch -d dev
+// 删除的时候需要切换到master主分支上才可以删除新建的dev分支
+```
+![enter image description here](https://i.loli.net/2019/05/24/5ce789d1ab25123197.png)
+``` javascript
+git add .
+git commit -m '提交内容说明'
+git push origin master
+// 把修改的都提交上去
+```
