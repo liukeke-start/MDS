@@ -3,32 +3,49 @@
 ###  一   怎么把本地代码推到git上面
 
 #### 1：（先进入项目文件夹）通过命令 git init 把这个目录变成git可以管理的仓库
-- git init
+``` javascript
+git init
+```
    
-#### 2：把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，不要忘记后面的小数点“.”，意为添加文件夹下的所有文件
-- git add .
+#### 2：把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，.意为添加文件夹下的所有文件
+``` javascript
+git add .
+```
   
 #### 3：用命令 git commit告诉Git，把文件提交到仓库。
-- git commit -m ' 提交的内容简介'
+``` javascript
+git commit -m '提交的内容简介'
+```
  
 #### 4：关联到远程库
-- git remote add origin 你的远程库地址
+``` javascript
+git remote add origin 你的远程库地址
+```
 
 #### 5：获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）
-- git pull --rebase origin master
+``` javascript
+git pull --rebase origin master
+```
 
 #### 6：推代码，此过程会让输入git用户名以及密码
-- git push -u origin master
+``` javascript
+git push -u origin master
+```
 
 ### 二  推本地代码的时候怎么免密码
 
 #### 1：首先需要检查你电脑是否已经有 SSH key 
 - 运行 git Bash 客户端，输入如下代码：
-- $ cd ~/.ssh
-- $ ls
+``` javascript
+cd ~/.ssh
+ls
+```
 - 这两个命令就是检查是否已经存在 id_rsa.pub 或 id_dsa.pub 文件，如果文件已经存在，那么你可以跳过步骤2，直接进入步骤3。
+
 #### 2：创建一个 SSH key 
-- $ ssh-keygen -t rsa -C "your_email@example.com"
+``` javascript
+ssh-keygen -t rsa -C "your_email@example.com"
+```
 - 代码参数含义：
 -t 指定密钥类型，默认是 rsa ，可以省略。
 -C 设置注释文字，比如邮箱。
@@ -42,7 +59,9 @@
 
 #### 3：添加你的 SSH key 到 github上面去
 - 首先你需要拷贝 id_rsa.pub 文件的内容，你可以用编辑器打开文件复制，也可以用git命令复制该文件的内容，如：
-- $ clip < ~/.ssh/id_rsa.pub
+``` javascript
+clip < ~/.ssh/id_rsa.pub
+```
 
 ![enter image description here](https://i.loli.net/2019/05/24/5ce76762b1a9470612.jpg)
 
@@ -52,7 +71,9 @@
  ![enter image description here](https://i.loli.net/2019/05/24/5ce76865dc23522328.jpg)
  
 #### 4：测试一下该SSH key
-- $ ssh -T git@github.com
+``` javascript
+ssh -T git@github.com
+```
 - 或者提交一次试试
 #### 5：由于输入密码的解决办法
 - 由于我在步骤2的时候添加了密码，所以每次push的时候还需要密码，例如：
@@ -60,8 +81,10 @@
 ![enter image description here](https://i.loli.net/2019/05/24/5ce767a79383267136.jpg)
  
 - 这个地方需要输入创建ssh时候的密码，解决办法如下：
-- eval `ssh-agent -s`
-- ssh-add
+``` javascript
+eval `ssh-agent -s`
+ssh-add
+```
 
 ![enter image description here](https://i.loli.net/2019/05/24/5ce767f1be1e916009.jpg)
 
@@ -112,3 +135,4 @@ git commit -m '提交内容说明'
 git push origin master
 // 把修改的都提交上去
 ```
+- 注意：所有的命令都是在git bash中完成的。
