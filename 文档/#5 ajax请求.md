@@ -17,7 +17,7 @@
 
 - 注意：尽量避免使用Get方式提交表单，因为有可能会导致安全问题 
 
-##### 重点：POST在data里面传参，GET在url上传参。
+#### 重点：POST在data里面传参，GET在url上传参。
 
 - 具体代码如下：
 ``` javascript
