@@ -139,4 +139,11 @@ git commit -m '提交内容说明'
 git push origin master
 // 把修改的都提交上去
 ```
+- 忽略git检查
+
+![enter image description here](https://i.loli.net/2019/05/29/5cedf8c84517435189.jpg)
+
+``` javascript
+git commit --no-verify -m '提交内容说明'
+```
 - 注意：所有的命令都是在git bash中完成的。
