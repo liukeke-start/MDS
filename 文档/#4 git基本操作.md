@@ -100,9 +100,22 @@ ssh-add
 ``` javascript
 git remote -v
 ```
+- git修改远程仓库地址
+``` javascript
+git remote set-url origin [url]
+```
 - 查看远程分支
 ``` javascript
 git branch -a  
+```
+- 获取commit的哈希值
+``` javascript
+git log 
+```
+![enter image description here](https://i.loli.net/2019/07/12/5d2828e42db4672811.png)
+- 删除上次提交
+``` javascript
+git revert [哈希值]
 ```
 - 提交之前查看本次提交修改了那些文件
 ``` javascript
