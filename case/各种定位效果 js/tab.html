@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .tab {
+            width: 300px;
+            margin: 100px auto;
+        }
+        .tabCon {
+            display: none;
+             background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+    </div>
+</body>
+</html>
+<script src="./jquery-1.7.2.min.js"></script>
+<script>
+    var $data = 
+    {
+    "data": {
+        "data": {
+            "quesIdQuesNo": {
+                "Q18R1": "Q18", 
+                "Q18R2": "Q18", 
+                "Q18R3": "Q18", 
+                "Q18R4": "Q18", 
+                "Q18R5": "Q18", 
+                "Q18R6": "Q18", 
+                "Q18R7": "Q18", 
+                "Q18R8": "Q18", 
+                "Q18R9": "Q18", 
+                "Q18R10": "Q18", 
+                "Q18R11": "Q18", 
+                "Q18R12": "Q18", 
+                "Q20R1": "Q20", 
+                "Q20R2": "Q20", 
+                "Q20R3": "Q20", 
+                "Q20R4": "Q20", 
+                "Q21R1": "Q21", 
+                "Q21R2": "Q21", 
+                "Q21R3": "Q21", 
+                "Q21R4": "Q21", 
+                "Q22R1": "Q22", 
+                "Q22R2": "Q22", 
+                "Q22R3": "Q22", 
+                "Q22R4": "Q22", 
+                "Q23R1": "Q23", 
+                "Q23R2": "Q23", 
+                "Q23R3": "Q23", 
+                "Q23R4": "Q23"
+            }, 
+            "quesNoQuesType": {
+                "Q1": "SingleChoice", 
+                "Q2": "SingleChoice", 
+                "Q3": "SingleChoice", 
+                "Q4": "SingleChoice", 
+                "Q5": "SingleChoice", 
+                "Q6": "SingleChoice", 
+                "Q7": "SingleChoice", 
+                "Q8": "SingleChoice", 
+                "Q9": "SingleChoice", 
+                "Q40": "SingleChoice", 
+                "Q20": "MultiChoice", 
+                "Q22": "MultiChoice", 
+                "Q21": "MultiChoice", 
+                "Q24": "SingleChoice", 
+                "Q23": "MultiChoice", 
+                "Q26": "SingleChoice", 
+                "Q25": "SingleChoice", 
+                "Q28": "SingleChoice", 
+                "Q27": "SingleChoice", 
+                "Q29": "SingleChoice", 
+                "Q31": "SingleChoice", 
+                "Q30": "SingleChoice", 
+                "Q11": "SingleChoice", 
+                "Q33": "SingleChoice", 
+                "Q10": "SingleChoice", 
+                "Q32": "SingleChoice", 
+                "Q13": "SingleChoice", 
+                "Q35": "SingleChoice", 
+                "Q12": "SingleChoice", 
+                "Q34": "SingleChoice", 
+                "Q15": "SingleChoice", 
+                "Q37": "SingleChoice", 
+                "Q14": "SingleChoice", 
+                "Q36": "SingleChoice", 
+                "Q17": "SingleChoice", 
+                "Q39": "SingleChoice", 
+                "Q16": "SingleChoice", 
+                "Q38": "SingleChoice", 
+                "Q19": "SingleChoice", 
+                "Q18": "MultiChoice"
+            }, 
+            "quesNoMeasurement": {
+                "Q1": "5", 
+                "Q2": "5", 
+                "Q3": "5", 
+                "Q4": "5", 
+                "Q5": "5", 
+                "Q6": "5", 
+                "Q7": "5", 
+                "Q8": "5", 
+                "Q9": "5", 
+                "Q40": "5", 
+                "Q20": "5", 
+                "Q22": "5", 
+                "Q21": "5", 
+                "Q24": "5", 
+                "Q23": "5", 
+                "Q26": "5", 
+                "Q25": "5", 
+                "Q28": "5", 
+                "Q27": "5", 
+                "Q29": "5", 
+                "Q31": "5", 
+                "Q30": "5", 
+                "Q11": "5", 
+                "Q33": "5", 
+                "Q10": "5", 
+                "Q32": "5", 
+                "Q13": "5", 
+                "Q35": "5", 
+                "Q12": "5", 
+                "Q34": "5", 
+                "Q15": "5", 
+                "Q37": "5", 
+                "Q14": "5", 
+                "Q36": "5", 
+                "Q17": "5", 
+                "Q39": "5", 
+                "Q16": "5", 
+                "Q38": "5", 
+                "Q19": "5", 
+                "Q18": "5"
+            }, 
+            "treeData": [
+                {
+                    "quesCol": [ ], 
+                    "id": "Q1", 
+                    "label": "Q1:大区"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q2", 
+                    "label": "Q2:购买批次"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q3", 
+                    "label": "Q3:年龄"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q4", 
+                    "label": "Q4:学历"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q5", 
+                    "label": "Q5:城市级别"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q6", 
+                    "label": "Q6:消费能力"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q7", 
+                    "label": "Q7:购买渠道"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q8", 
+                    "label": "Q8:是否购买"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q9", 
+                    "label": "Q9:购买品牌"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q10", 
+                    "label": "Q10:品牌吸引力"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q11", 
+                    "label": "Q11:是否关注"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q12", 
+                    "label": "Q12:是否感兴趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q13", 
+                    "label": "Q13:是否偏好"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q14", 
+                    "label": "Q14:原用产品"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q15", 
+                    "label": "Q15:现用产品"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q16", 
+                    "label": "Q16:原来是否用本产品"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q17", 
+                    "label": "Q17:现在是否用本产品"
+                }, 
+                {
+                    "quesCol": [
+                        {
+                            "id": "Q18R1", 
+                            "label": "Q18R1=口碑好"
+                        }, 
+                        {
+                            "id": "Q18R2", 
+                            "label": "Q18R2=清洁能力强"
+                        }, 
+                        {
+                            "id": "Q18R3", 
+                            "label": "Q18R3=易于操控"
+                        }, 
+                        {
+                            "id": "Q18R4", 
+                            "label": "Q18R4=高端大气"
+                        }, 
+                        {
+                            "id": "Q18R5", 
+                            "label": "Q18R5=外观漂亮"
+                        }, 
+                        {
+                            "id": "Q18R6", 
+                            "label": "Q18R6=静音/声音很小"
+                        }, 
+                        {
+                            "id": "Q18R7", 
+                            "label": "Q18R7=很智能"
+                        }, 
+                        {
+                            "id": "Q18R8", 
+                            "label": "Q18R8=是我信赖的品牌"
+                        }, 
+                        {
+                            "id": "Q18R9", 
+                            "label": "Q18R9=性价比好"
+                        }, 
+                        {
+                            "id": "Q18R10", 
+                            "label": "Q18R10=促销活动有吸引力"
+                        }, 
+                        {
+                            "id": "Q18R11", 
+                            "label": "Q18R11=可以远程操控"
+                        }, 
+                        {
+                            "id": "Q18R12", 
+                            "label": "Q18R12=电池续航能力强"
+                        }
+                    ], 
+                    "id": "Q18", 
+                    "label": "Q18:购买关键驱动因素"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q19", 
+                    "label": "Q19:竞争品牌"
+                }, 
+                {
+                    "quesCol": [
+                        {
+                            "id": "Q20R1", 
+                            "label": "Q20R1=海尔"
+                        }, 
+                        {
+                            "id": "Q20R2", 
+                            "label": "Q20R2=科沃兹"
+                        }, 
+                        {
+                            "id": "Q20R3", 
+                            "label": "Q20R3=米家"
+                        }, 
+                        {
+                            "id": "Q20R4", 
+                            "label": "Q20R4=石头"
+                        }
+                    ], 
+                    "id": "Q20", 
+                    "label": "Q20:关注品牌"
+                }, 
+                {
+                    "quesCol": [
+                        {
+                            "id": "Q21R1", 
+                            "label": "Q21R1=海尔"
+                        }, 
+                        {
+                            "id": "Q21R2", 
+                            "label": "Q21R2=科沃兹"
+                        }, 
+                        {
+                            "id": "Q21R3", 
+                            "label": "Q21R3=米家"
+                        }, 
+                        {
+                            "id": "Q21R4", 
+                            "label": "Q21R4=石头"
+                        }
+                    ], 
+                    "id": "Q21", 
+                    "label": "Q21:产生兴趣品牌"
+                }, 
+                {
+                    "quesCol": [
+                        {
+                            "id": "Q22R1", 
+                            "label": "Q22R1=海尔"
+                        }, 
+                        {
+                            "id": "Q22R2", 
+                            "label": "Q22R2=科沃兹"
+                        }, 
+                        {
+                            "id": "Q22R3", 
+                            "label": "Q22R3=米家"
+                        }, 
+                        {
+                            "id": "Q22R4", 
+                            "label": "Q22R4=石头"
+                        }
+                    ], 
+                    "id": "Q22", 
+                    "label": "Q22:偏好品牌"
+                }, 
+                {
+                    "quesCol": [
+                        {
+                            "id": "Q23R1", 
+                            "label": "Q23R1=海尔"
+                        }, 
+                        {
+                            "id": "Q23R2", 
+                            "label": "Q23R2=科沃兹"
+                        }, 
+                        {
+                            "id": "Q23R3", 
+                            "label": "Q23R3=米家"
+                        }, 
+                        {
+                            "id": "Q23R4", 
+                            "label": "Q23R4=石头"
+                        }
+                    ], 
+                    "id": "Q23", 
+                    "label": "Q23:购买品牌"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q24", 
+                    "label": "Q24:价格与促销"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q25", 
+                    "label": "Q25:促销类型"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q26", 
+                    "label": "Q26:产品功能"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q27", 
+                    "label": "Q27:口碑"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q28", 
+                    "label": "Q28:品牌"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q29", 
+                    "label": "Q29:海尔关注并产生兴趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q30", 
+                    "label": "Q30:科沃兹关注并产生兴趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q31", 
+                    "label": "Q31:米家关注并产生兴趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q32", 
+                    "label": "Q32:石头关注并产生兴趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q33", 
+                    "label": "Q33:海尔产生兴趣并偏好"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q34", 
+                    "label": "Q34:科沃兹产生兴趣并偏好"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q35", 
+                    "label": "Q35:米家产生兴趣并偏好趣"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q36", 
+                    "label": "Q36:石头产生兴趣并偏好"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q37", 
+                    "label": "Q37:海尔偏好并购买"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q38", 
+                    "label": "Q38:科沃兹偏好并购买"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q39", 
+                    "label": "Q39:米家偏好并购买"
+                }, 
+                {
+                    "quesCol": [ ], 
+                    "id": "Q40", 
+                    "label": "Q40:石头偏好并购买"
+                }
+            ], 
+            "quesNoQuesId": {
+                "Q18": [
+                    "Q18R1", 
+                    "Q18R2", 
+                    "Q18R3", 
+                    "Q18R4", 
+                    "Q18R5", 
+                    "Q18R6", 
+                    "Q18R7", 
+                    "Q18R8", 
+                    "Q18R9", 
+                    "Q18R10", 
+                    "Q18R11", 
+                    "Q18R12"
+                ], 
+                "Q20": [
+                    "Q20R1", 
+                    "Q20R2", 
+                    "Q20R3", 
+                    "Q20R4"
+                ], 
+                "Q21": [
+                    "Q21R1", 
+                    "Q21R2", 
+                    "Q21R3", 
+                    "Q21R4"
+                ], 
+                "Q22": [
+                    "Q22R1", 
+                    "Q22R2", 
+                    "Q22R3", 
+                    "Q22R4"
+                ], 
+                "Q23": [
+                    "Q23R1", 
+                    "Q23R2", 
+                    "Q23R3", 
+                    "Q23R4"
+                ]
+            }
+        }
+    }
+    }
+   var data = $data.data.data.treeData;
+   var html = ' ';
+   for(var i = 0; i < data.length; i++) {
+       var dataQuescol = data[i].quesCol;
+       var htmlCon = ' ';
+       for(var j = 0; j < dataQuescol.length; j++){
+           if(dataQuescol.length != 0) {
+               htmlCon += '<p><input type="checkbox" name="vehicle" value="" />' + dataQuescol[j].label + '</p>'       
+           }
+       }
+        html += '<div class="tabItem">' +
+                    '<p class="tabTit">'+ '<input class="titlabel" type="checkbox" name="vehicle" value="" /> '+ data[i].label + '</p>'+
+                    '<div class="tabCon">' + 
+                        htmlCon +
+                    '</div>' +
+                '</div>';
+   }
+   $('.tab').html(html);
+   //点击显示
+   $('.tabTit').each(function() {
+          var $this = $(this); //把this指向储存，然后在绑定事件
+          $this.on('click',function() {
+              $(this).next().toggle();        
+          });
+    });
+
+</script>
