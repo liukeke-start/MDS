@@ -72,7 +72,7 @@ p {
 $('body').mousewheel(function(event) {
     // 判断鼠标滚动方向，上为正数，下为负数
     var event = event || window.event;
-    var delta = event.originalEvent.wheelDelta;
+    var delta = event.originalEvent.wheelDelta || event.deltaY;
     if (delta > 0) { // 鼠标向上滚，向后翻
         jQuery('.prev').trigger('click'); //当用 jquery-mousewhee库给轮播图加鼠标滑动翻页的时候，只需要引用向前向后翻页的点击事件就行
     } else { // 鼠标向下滚，向前翻
