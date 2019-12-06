@@ -48,10 +48,15 @@
         }
     });
     // 页面加载的时候遍历出来每个li的宽度
-    var len = $('.mybox li').length;
+    var len = $('.mybox li').length,
+        widths = 0;
     for(var i =0; i < len; i++) {
+        // 每个li的宽
+        $('.mybox li').eq(i).width()
         console.log($('.mybox li').eq(i).width());
+        // li宽的总和
+        widths += parseInt($('.mybox li').eq(i).width());
     }
-
+    console.log(widths);
 
 </script>
