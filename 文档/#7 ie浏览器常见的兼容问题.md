@@ -64,7 +64,21 @@ p {
 }
 ``` 
 
-###  五  兼容ie+浏览器的轮播图插件
+###  五  页面缩放的过程中，内容一直垂直居中
+- div内容根据body绝对定位，这样就会一直垂直居中
+``` scss
+body{
+     position: relative;
+}
+div {
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    margin-top: -100px;
+}
+``` 
+
+###  六  兼容ie+浏览器的轮播图插件
 
 - superslide插件地址： http://www.superslide2.com/index.html
 ``` javascript
@@ -81,7 +95,7 @@ $('body').mousewheel(function(event) {
 })
 ``` 
 
-###  六  兼容ie6+的鼠标滚动事件库
+###  七  兼容ie6+的鼠标滚动事件库
 
 - jquery-mousewheel库的git地址：https://github.com/jquery/jquery-mousewheel/blob/master/jquery.mousewheel.js?tdsourcetag=s_pcqq_aiomsg
 -  jquery-mousewheel库的npm地址：https://www.npmjs.com/package/jquery-mousewheel
