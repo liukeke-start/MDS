@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul class="mybox">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+// 低版本浏览器，1 可以和数组做关联
+var arr = [
+    'one',
+    'two',
+    'home',
+    'nav',
+    'header',
+    'download',
+]
+
+$('.mybox').on('click', 'li', function() {
+    // 让当前li和数组做关联 $(this).index()获取当前li的索引值，从而给用 arr[$(this).index()]获取对应的数组的值
+    $(this).attr('id', arr[$(this).index()] );
+    var id = arr[$(this).index()] ;
+    console.log(id);
+    // 循环数组用forEach
+    arr.forEach(function(val) {
+         //console.log(val);
+    })
+
+})
+
+//  2 可以给document元素加id
+$('.mybox').on('click', 'li', function() {
+    var id = $(this).attr('id');
+    console.log(id);
+})  
+
+//  3 可以给document加自定义属性
+$('li').attr('nametype', 'formal');
+$('.mybox').on('click', 'li', function() {
+    var id = $(this).attr("nametype");
+    console.log(id);
+})
+
+
+// 高版本浏览器可以用data-*的属性加自定义
+// <li data-type='one' >5</li>
+// js获取  li.dataset.type
+// jq获取  $('li').data('type')
+
+
+
+
+
+</script>
