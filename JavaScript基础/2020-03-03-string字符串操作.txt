@@ -1,0 +1,151 @@
+### string字符串操作
+![enter image description here](https://i.loli.net/2020/03/05/W8ABcej3wMERGaC.jpg)
+#### 1.concat()
+- 作用：连接两个或多个字符串
+- 语法：string.concat(string1, string2, ..., stringX)
+- 返回值：该方法没有改变原有字符串，但是会返回连接两个或多个字符串新字符串。
+```javascript
+// 例子   
+let el = "hello";
+let el1 = "world";
+el.concat(el1); // 返回一个新字符串"helloworld" 并不会改变el和el1的值
+```
+#### 2.slice()
+- 作用：截取字符串
+- 语法：slice(start, end) 方法可提取字符串的某个部分。（使用 start（包含） 和 end（不包含） 参数来指定字符串提取的部分。字符串中第一个字符位置为 0, 第二个字符位置为 1, 以此类推。）<br>
+提示： 如果是负数，则该参数规定的是从字符串的尾部开始算起的位置。也就是说，-1 指字符串的最后一个字符，-2 指倒数第二个字符，以此类推。
+- 返回值：返回一个新的字符串
+```javascript
+// 例子   
+let el = "helloworld";
+let el1 = el.slice(2,5)  
+console.log(el1) // llo
+```
+#### 3.substr()
+- 作用： 从起始索引号提取字符串中指定数目的字符。截取字符串
+- 语法： string.substr(参数1,参数2)；<br>
+参数1：截取字符串的起始索引（必须）
+参数2：截取字符串的长度，如果只有一个参数，则默认截取到最后
+- 返回值： 返回一个字符串
+```javascript
+// 例子   
+let el = "hellomyname";
+let el1 = el.substr(2,5)  
+console.log(el1) // llomy
+```
+#### 4.substring() 
+- 作用：提取字符串中介于两个指定下标之间的字符。
+-  语法：string.substring(参数1, 参数2)；<br>
+两个参数都代表索引值，与slice()用法一致，参数为负值将全部截取字符串
+- 返回值：返回的子串包括 开始 处的字符，但不包括 结束 处的字符。
+```javascript
+// 例子   
+let el = "hellomyname";
+let el1 = el.substring(2,5)  
+console.log(el1) // llo
+```
+#### 5.toUpperCase() 
+- 作用：把字符串转换为大写。
+- 语法：string.toUpperCase()
+- 返回值：大写的字符串
+```javascript
+// 例子   
+let el = "hellomyname";
+let el1 = el.toUpperCase() 
+console.log(el1) // HELLOMYNAME
+```
+#### 6.toLowerCase()
+- 作用：把字符串转换为小写。
+-  语法：string.toLowerCase()
+-  返回值：小写的字符串
+```javascript
+// 例子   
+let el = "HELLOMYNAME";
+let el1 = el.toLowerCase() 
+console.log(el1) //  hellomyname
+```
+#### 7.search()
+-  作用：检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串
+-  语法：string.search(参数)  参数：查找的字符串或者正则表达式。
+-  返回值：字符串中所匹配的索引值，如果匹配不到则返回-1
+```javascript
+// 例子   
+let el = "name";
+let el1 = el.search('m') 
+console.log(el1) //  2
+```
+#### 8.split()
+-  作用：把字符串分割成数组
+-  语法：string.split(separator,limit) <br>
+参数1：用什么分，参数2: 分割成功后数组的最大长度 
+-  返回值：一个字符串数组。该数组是通过在 separator 指定的边界处将字符串 string Object 分割成子串创建的。返回的数组中的字串不包括 separator 自身。
+```javascript
+// 例子   
+let el = "how are you";
+let el1 = el.split("") 
+console.log(el1) //  ["h", "o", "w", " ", "a", "r", "e", " ", "y", "o", "u"]
+let el2 = el.split("", 3);
+console.log(el2) // ["h", "o", "w"]
+```
+#### 9.charAt()
+-  作用：给定字符串的索引，获取相应的字符
+-  语法：string.charAt(索引)  注：字符串第一个字符索引为0
+-  返回值：该字符串所在索引位置的字符
+```javascript
+// 例子   
+let el = "name";
+let el1 = el.charAt(2) 
+console.log(el1) //  m
+```
+#### 10.charCodeAt()
+-  作用：获取相应位置字符的Unicode 编码
+-  语法：string.charCodeAt(索引)  
+-  返回值：是该字符所在索引位置的字符的编码值
+```javascript
+// 例子   
+let el = "name";
+let el1 = el.charCodeAt(2) 
+console.log(el1) // 109
+```
+#### 11.indexOf()
+-  作用：查找字符所在的索引值
+-  语法：string.indexOf(需检索的字符串值)   注：从前往后找
+-  返回值：从前面寻找第一个符合元素的位置，有多个返回值时则返回第一个，如果没找到匹配的字符串则返回 -1。
+```javascript
+// 例子   
+let el = "namemm";
+let el1 = el.indexOf('m') 
+console.log(el1) // 2
+```
+#### 12.lastIndexOf()
+-  作用：查找字符所在的索引值
+-  语法：string.indexOf(需检索的字符串值)   注：从后往前找
+-  返回值：从后寻找第一个符合元素的位置，有多个返回值时则返回第一个，如果没找到匹配的字符串则返回 -1。
+```javascript
+// 例子   
+let el = "namemm";
+let el1 = el.lastIndexOf('m') 
+console.log(el1) // 5
+```
+#### 13.replace()
+-  作用：replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+-  语法：string.replace(参数1，参数2)  参数1：指定字符串中的字符  参数2：指定要替换成的字符
+-  返回值：替换后的字符
+```javascript
+// 例子   
+let el = "namemm";
+let el1 = el.replace('m','c') 
+console.log(el1) // nacemm
+```
+#### 14match()
+-  作用：match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+-  语法：string.match(参数1） 参数1：要在字符串中查找的字符
+-  返回值：存放匹配结果的数组。该数组的内容依赖于 regexp 是否具有全局标志 g。 如果没找到匹配结果返回 null 。
+```javascript
+// 例子   
+let el = "namemm";
+let el1 = el.match('m') 
+console.log(el1) // ["m", index: 2, input: "namemm", groups: undefined]
+let el2  el.match(/m/gi) 
+console.log(el2 // ["m", "m", "m"]
+```
